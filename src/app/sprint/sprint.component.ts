@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatTableDataSource} from "@angular/material";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatDialog, MatPaginator, MatSort} from "@angular/material";
+import {MatTableDataSource} from "@angular/material/table";
 import {Task} from "../model/task";
 import {SprintService} from "../service/sprint-service";
 import {Sprint} from "../model/sprint";
@@ -13,7 +14,7 @@ import {BoardItemStatusEnum} from "../util/board-item-status-enum";
 import {User} from "../model/user";
 import {UserService} from "../service/user-service";
 import {TaskDialogComponent} from "../dialog/task-dialog/task-dialog.component";
-import {isNotNullOrUndefined} from "codelyzer/util/isNotNullOrUndefined";
+import {RemoveDialogComponent} from "../dialog/remove-dialog/remove-dialog.component";
 
 @Component({
   selector: 'app-sprint',
@@ -22,11 +23,13 @@ import {isNotNullOrUndefined} from "codelyzer/util/isNotNullOrUndefined";
 })
 export class SprintComponent implements OnInit {
   displayedColumns: string[] =
-    ['id', 'title', 'estimation', 'priority', 'user'];
+    ['id', 'title', 'status', 'estimation', 'priority', 'user', 'remove'];
   dataSource = new MatTableDataSource<Task>([]);
   sprintList: Sprint[] = [];
   currentSprint: Sprint = Sprint.getBlankSprint();
   allUsers: User[] = [];
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private sprintService: SprintService,
               private taskService: TaskService,
@@ -49,7 +52,11 @@ export class SprintComponent implements OnInit {
               sprintId = this.currentSprint.id;
             }
             this.taskService.getTasksBySprintId(sprintId).subscribe(
-              (response) => this.dataSource = new MatTableDataSource<Task>(response),
+              (response) => {
+                this.dataSource = new MatTableDataSource(response);
+                this.dataSource.sort = this.sort;
+                this.dataSource.paginator = this.paginator;
+              },
               (error) => console.log("Something went wrong while fetching tasks for sprint " + sprintId)
             );
           }
@@ -72,7 +79,7 @@ export class SprintComponent implements OnInit {
     this.taskService.getTasksBySprintId(sprintId).subscribe(
       (response) => {
         if (response) {
-          this.dataSource = new MatTableDataSource<Task>(response);
+          this.dataSource = new MatTableDataSource(response);
           this.currentSprint = this.sprintList.find(sprint => sprint.id === sprintId);
         }
       },
@@ -118,7 +125,7 @@ export class SprintComponent implements OnInit {
   addNewTask() {
     let boardItemForm: FormGroup = this.formBuilder.group({
       'id': new FormControl(null),
-      'name': new FormControl("", Validators.required),
+      'title': new FormControl("", Validators.required),
       'description': new FormControl(""),
       'status': new FormControl(BoardItemStatusEnum.NEW),
       'priority': new FormControl(2),
@@ -129,13 +136,11 @@ export class SprintComponent implements OnInit {
     const allUsers = this.allUsers;
     const statusList: string[] = [BoardItemStatusEnum.NEW, BoardItemStatusEnum.IN_PROGRSESS,
       BoardItemStatusEnum.IN_REVIEW, BoardItemStatusEnum.DONE];
-    const isNew = true;
     const dialogRef = this.dialog.open(TaskDialogComponent, {
       data: {
         boardItemForm,
         allUsers,
-        statusList,
-        isNew
+        statusList
       }
     });
 
@@ -145,7 +150,7 @@ export class SprintComponent implements OnInit {
           let taskToSave: Task = Task.getBlankTask();
           taskToSave.title = result.boardItemForm.controls['title'].value;
           taskToSave.description = result.boardItemForm.controls['description'].value;
-          // taskToSave.status = result.boardItemForm.controls['status'].value;
+          taskToSave.status = result.boardItemForm.controls['status'].value;
           taskToSave.priority = result.boardItemForm.controls['priority'].value;
           taskToSave.estimation = result.boardItemForm.controls['estimation'].value;
 
@@ -156,15 +161,109 @@ export class SprintComponent implements OnInit {
 
           this.taskService.create(taskToSave).subscribe(
             (response: Task) => {
-              if (isNotNullOrUndefined(this.dataSource.data)) {
-                this.dataSource = new MatTableDataSource<Task>([response]);
-              } else {
-                // this.dataSource.data.push(response);
-                // add data to existing table
-              }
+              this.dataSource.data.push(response);
+              this.dataSource._updateChangeSubscription();
             },
             (error) => console.log(error));
         }
       });
+  }
+
+  openTask(task: Task) {
+    let boardItemForm: FormGroup = this.formBuilder.group({
+      'id': new FormControl(task.id),
+      'title': new FormControl(task.title, Validators.required),
+      'description': new FormControl(task.description),
+      'status': new FormControl(task.status),
+      'priority': new FormControl(task.priority),
+      'estimation': new FormControl(task.estimation),
+      'user': new FormControl(task.user, Validators.required)
+    });
+
+    const allUsers = this.allUsers;
+    const statusList: string[] = [BoardItemStatusEnum.NEW, BoardItemStatusEnum.IN_PROGRSESS,
+      BoardItemStatusEnum.IN_REVIEW, BoardItemStatusEnum.DONE];
+    const dialogRef = this.dialog.open(TaskDialogComponent, {
+      data: {
+        boardItemForm,
+        allUsers,
+        statusList
+      }
+    });
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        if (result != null) {
+          task.title = result.boardItemForm.controls['title'].value;
+          task.description = result.boardItemForm.controls['description'].value;
+          task.status = result.boardItemForm.controls['status'].value;
+          task.priority = result.boardItemForm.controls['priority'].value;
+          task.estimation = result.boardItemForm.controls['estimation'].value;
+
+          task.user = result.boardItemForm.controls['user'].value;
+          let sprint = Sprint.getBlankSprint();
+          sprint.id = this.currentSprint.id;
+          task.sprint = sprint;
+
+          this.taskService.update(task).subscribe(
+            (response: Task) => {
+              // update datashource?
+              this.dataSource._updateChangeSubscription();
+              this.toastr.success("Task was updated");
+            },
+            (error) => this.toastr.error("Task was not updated"))
+        }
+      });
+  }
+
+  getUserName(user: User): string {
+    if (Util.isNullOrUndefined(user)) {
+      return 'none';
+    } else {
+      return user.firstName;
+    }
+  }
+
+  openRemoveDialog(data: Task) {
+    const title = data.title;
+    const dialogRef = this.dialog.open(RemoveDialogComponent, {
+      width: '30%',
+      height: '20%',
+      minHeight: 170, // assumes px
+      data: {
+        title
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog closed');
+      if (result != null) {
+        this.taskService.delete(data.id).subscribe(
+          () => {
+            const index = this.dataSource.data.findIndex(task => task.id === data.id);
+            this.dataSource.data.splice(index, 1);
+            this.dataSource._updateChangeSubscription();
+            this.toastr.success("Task was removed");
+          },
+          () => this.toastr.error("Task was not removed")
+        );
+      }
+    });
+  }
+
+// (
+// (response) => {
+//   // should remove user from organization not from the app
+//   if (response == null) {
+//   this.toastr.success(name + ' was removed', 'User removed');
+// }
+// },
+// (error) => {
+//   this.toastr.error(name + ' was not removed', 'User removal failed');
+//   console.log(error);
+// })
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

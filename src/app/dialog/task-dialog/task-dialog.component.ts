@@ -1,6 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {TaskService} from "../../service/task-service";
+import {User} from "../../model/user";
+import {Util} from "../../util/util";
 
 @Component({
   selector: 'app-task-dialog',
@@ -22,23 +24,11 @@ export class TaskDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  deleteTask(data: any) {
-    let taskId: number = data.boardItemForm.controls['id'].value;
-    let userStoryId: number = data.userStoryId;
-
-    this.taskService.delete(taskId);
-      // .subscribe((response) => {
-      //     if (response == null) {
-      //       console.log('Task was removed.');
-      //       let taskList = this.userStories.find(userStory => userStory.id === userStoryId).tasks;
-      //       const indexOfTask = taskList.findIndex(task => task.id === taskId);
-      //       taskList.splice(indexOfTask, 1);
-      //       this.changeUserStoryList.emit(this.userStories);
-      //     }
-      //   },
-      //   (error) => console.log(error)
-      // );
-    this.dialogRef.close();
+  getUserName(user: User): string {
+    if (Util.isNullOrUndefined(user)) {
+      return 'none';
+    } else {
+      return user.firstName;
+    }
   }
-
 }

@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
   MatButtonModule,
   MatCardModule,
-  MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatGridListModule,
+  MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatGridListModule, MatIconModule,
   MatInputModule, MatListModule, MatNativeDateModule,
   MatPaginatorModule, MatRadioModule, MatSelectModule, MatSidenavModule, MatSortModule,
   MatStepperModule, MatTableModule
@@ -28,6 +28,7 @@ import {SprintService} from "./service/sprint-service";
 import {TaskService} from "./service/task-service";
 import { SprintDialogComponent } from './dialog/sprint-dialog/sprint-dialog.component';
 import { TaskDialogComponent } from './dialog/task-dialog/task-dialog.component';
+import { RemoveDialogComponent } from './dialog/remove-dialog/remove-dialog.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/sprint/current', pathMatch: 'full', canActivate: [AuthGuard]},
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     SprintComponent,
     HeaderComponent,
     SprintDialogComponent,
-    TaskDialogComponent
+    TaskDialogComponent,
+    RemoveDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,7 @@ const appRoutes: Routes = [
     MatStepperModule,
     MatPaginatorModule,
     MatSortModule,
+    MatPaginatorModule,
     MatSidenavModule,
     MatRadioModule,
     MatDatepickerModule,
@@ -69,7 +72,8 @@ const appRoutes: Routes = [
     MatSelectModule,
     ToastrModule.forRoot(),
     ToastContainerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   exports: [MatButtonModule, MatCheckboxModule],
   providers: [

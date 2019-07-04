@@ -3,7 +3,7 @@
     <mat-form-field class='task-dialog-title-input'>
       <input matInput
              placeholder="Task title"
-             formControlName='name'>
+             formControlName='title'>
     </mat-form-field>
   </div>
   <div class="task-dialog-description">
@@ -34,7 +34,7 @@
       <mat-select placeholder='Owner ' formControlName='user'>
         <mat-option *ngFor='let user of data.allUsers'
                     [value]='user'>
-          {{user.name}}
+          {{getUserName(user)}}
         </mat-option>
       </mat-select>
     </mat-form-field>

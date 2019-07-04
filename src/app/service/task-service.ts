@@ -38,7 +38,7 @@ export class TaskService {
 
   delete(taskId: number) {
     let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
-    this.httpClient.delete(AppConstants.TASK_URL + '/' + taskId, {headers: authHeader});
+    return this.httpClient.delete(AppConstants.TASK_URL + '/' + taskId, {headers: authHeader});
   }
 
 }
