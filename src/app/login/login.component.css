@@ -1,0 +1,23 @@
+.sign-in-card {
+  max-width: 400px;
+  width: 50%;
+  max-height: 400px;
+  height: 50%;
+  margin: 10% auto auto;
+}
+
+.form-input {
+  width: 85%;
+}
+
+.bluebird-logo {
+  width: 20rem;
+  height: 10rem;
+  margin: auto auto 30px;
+}
+
+.logo {
+  color: crimson;
+  text-align: center;
+  margin: auto 25% 10px;
+}

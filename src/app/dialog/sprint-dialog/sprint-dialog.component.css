@@ -1,0 +1,30 @@
+.sprint-dialog-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  grid-gap: 5%;
+}
+
+.sprint-date-row {
+  grid-column: 1 / 3;
+  grid-row: 1;
+}
+
+.sprint-date-row-wrapper {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 2%;
+}
+
+.sprint-button-row {
+  grid-column: 1 / 2;
+  grid-row: 2;
+}
+
+.sprint-button-row-wrapper {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5%;
+}

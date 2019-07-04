@@ -1,0 +1,25 @@
+<div>
+  <mat-card class="sign-in-card">
+    <mat-card-header>
+      <div class="logo">Bioarcheology</div>
+    </mat-card-header>
+    <mat-card-content>
+      <form>
+        <mat-form-field class="form-input">
+          <input matInput placeholder="email" type="email" name="email" [(ngModel)]="email">
+        </mat-form-field>
+        <br/>
+        <mat-form-field class="form-input">
+          <input matInput placeholder="password" type="password" name="password" [(ngModel)]="password" (keyup.enter)="onLogin()">
+        </mat-form-field>
+
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" (click)="onLogin()">Sign in</button>
+    </mat-card-actions>
+    <div class="alert alert-danger" role="alert" *ngIf="invalidCredentials">
+      The email or password is invalid
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,63 @@
+/*-- main grid --*/
+.task-dialog-wrapper {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto;
+  grid-gap: 1%;
+}
+
+.task-dialog-title {
+  grid-column: 1 / 5;
+}
+
+.task-dialog-description {
+  grid-column: 1 / 5;
+}
+
+.task-dialog-details {
+  grid-column: 1 / 4;
+}
+
+.task-dialog-buttons {
+  grid-column: 1 / 4;
+}
+
+/*-- inner grid --*/
+
+.task-dialog-details-wrapper {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: auto auto;
+}
+
+.task-dialog-details-status {
+  /*grid-column: 1 / 2;*/
+}
+
+.task-dialog-details-user {
+  /*grid-column: 2 / 4;*/
+}
+
+.task-dialog-details-status-select {
+}
+
+.task-dialog-details-estimation {
+}
+
+.task-dialog-details-priority {
+}
+
+.task-dialog-title-input {
+  width: 98%;
+}
+
+.task-dialog-description-textarea {
+  width: 98%;
+}
+
+.task-dialog-buttons-wrapper {
+  /*display: grid;*/
+  /*grid-template-rows: 1fr;*/
+  /*grid-template-columns: 1fr 1fr;*/
+  /*grid-gap: 5%;*/
+}

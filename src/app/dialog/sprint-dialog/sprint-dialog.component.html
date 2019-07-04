@@ -1,0 +1,27 @@
+<div class="sprint-dialog-wrapper" [formGroup]="data.sprintFormControlGroup">
+  <div class="sprint-date-row">
+    <div class="sprint-date-row-wrapper">
+      <mat-form-field>
+        <input matInput [matDatepicker]="startDatepicker"
+               placeholder='Start date'
+               formControlName='startDate'>
+        <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatepicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="endDatepicker"
+               placeholder='End date'
+               formControlName='endDate'>
+        <mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatepicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="sprint-button-row">
+    <div class="sprint-button-row-wrapper">
+      <button mat-raised-button (click)='onNoClick()'>Cancel</button>
+      <button mat-raised-button color="primary" [matDialogClose]='data'>Save</button>
+    </div>
+  </div>
+</div>

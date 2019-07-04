@@ -1,0 +1,45 @@
+import {Injectable} from '@angular/core';
+
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Sprint} from '../model/sprint';
+import {AppConstants} from "../util/app-constants";
+
+@Injectable()
+export class SprintService {
+
+  constructor(private httpClient: HttpClient) {
+  }
+
+  login(sprint: Sprint): Observable<Sprint> {
+    let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.post<Sprint>(AppConstants.LOGIN_URL, sprint, {headers: authHeader});
+  }
+
+  create(sprint: Sprint): Observable<Sprint> {
+    let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.post<Sprint>(AppConstants.SPRINT_URL, sprint, {headers: authHeader});
+  }
+
+  update(sprint: Sprint): Observable<Sprint> {
+    let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.put<Sprint>(AppConstants.SPRINT_URL, sprint, {headers: authHeader});
+  }
+
+  getAllSprints(): Observable<Sprint[]> {
+    console.log("url:: " + AppConstants.SPRINT_URL + "/all");
+    let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.get<Sprint[]>(AppConstants.SPRINT_URL + "/all", {headers: authHeader});
+  }
+
+  // updatePassword(sprint: Sprint): Observable<Sprint> {
+  //   let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
+  //   return this.httpClient.patch<Sprint>(AppConstants.SPRINT_URL_UPDATE_PASSWORD, sprint, {headers: authHeader});
+  // }
+
+  delete(sprint: Sprint): Observable<Sprint> {
+    let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.delete<Sprint>(AppConstants.SPRINT_URL + '/' + sprint.id, {headers: authHeader});
+  }
+
+}
