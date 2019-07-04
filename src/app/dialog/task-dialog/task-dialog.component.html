@@ -17,51 +17,46 @@
       </textarea>
     </mat-form-field>
   </div>
-  <div class="task-dialog-details">
-    <div class="task-dialog-details-wrapper">
-      <div class="task-dialog-details-status">
-        <mat-form-field>
-          <mat-select
-            class="task-dialog-details-status-select"
-            placeholder='Status'
-            formControlName='status'>
-            <mat-option *ngFor='let status of data.statusList'
-                        value={{status}}>
-              {{status}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="task-dialog-details-user">
-        <mat-form-field class="text-input-half-width">
-          <mat-select placeholder='Owner ' formControlName='user'>
-            <mat-option *ngFor='let user of data.allUsers'
-                        [value]='user'>
-              {{user.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="task-dialog-details-estimation">
-        <mat-form-field class="text-input-half-width">
-          <input matInput
-                 placeholder='Estimation'
-                 formControlName='estimation'>
-        </mat-form-field>
-      </div>
-      <div class="task-dialog-details-priority">
-        <mat-form-field class="text-input-half-width">
-          <input matInput
-                 placeholder='Priority'
-                 formControlName='priority'>
-        </mat-form-field>
-      </div>
-    </div>
+  <div class="task-dialog-status">
+    <mat-form-field class="task-dialog-status-select">
+      <mat-select
+        placeholder='Status'
+        formControlName='status'>
+        <mat-option *ngFor='let status of data.statusList'
+                    value={{status}}>
+          {{status}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="task-dialog-user">
+    <mat-form-field class="task-dialog-user-select">
+      <mat-select placeholder='Owner ' formControlName='user'>
+        <mat-option *ngFor='let user of data.allUsers'
+                    [value]='user'>
+          {{user.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="task-dialog-estimation">
+    <mat-form-field class="task-dialog-estimation-input">
+      <input matInput
+             placeholder='Estimation'
+             formControlName='estimation'>
+    </mat-form-field>
+  </div>
+  <div class="task-dialog-priority">
+    <mat-form-field class="task-dialog-priority-input">
+      <input matInput
+             placeholder='Priority'
+             formControlName='priority'>
+    </mat-form-field>
   </div>
   <div class="task-dialog-buttons">
     <div class="task-dialog-buttons-wrapper">
-      <button mat-raised-button (click)='onNoClick()'>Cancel</button>
-      <button mat-raised-button color="primary" [mat-dialog-close]='data'>Save</button>
+      <button mat-raised-button (click)='onNoClick()' class="task-dialog-button-cancel">Cancel</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]='data' class="task-dialog-button-save">Save</button>
     </div>
   </div>
 </div>

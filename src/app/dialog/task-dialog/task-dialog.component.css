@@ -1,63 +1,70 @@
-/*-- main grid --*/
 .task-dialog-wrapper {
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
   grid-template-rows: auto auto auto auto;
   grid-gap: 1%;
 }
 
 .task-dialog-title {
-  grid-column: 1 / 5;
+  grid-column: 1 / 7;
 }
 
 .task-dialog-description {
-  grid-column: 1 / 5;
+  grid-column: 1 / 7;
 }
 
-.task-dialog-details {
-  grid-column: 1 / 4;
+.task-dialog-status {
+  grid-column: 1 / 2;
+}
+
+.task-dialog-user {
+  grid-column: 2 / 3;
+}
+
+.task-dialog-estimation {
+  grid-column: 3 / 4;
+}
+
+.task-dialog-priority {
+  grid-column: 4 / 5;
 }
 
 .task-dialog-buttons {
-  grid-column: 1 / 4;
+  grid-column: 1 / 3;
 }
 
-/*-- inner grid --*/
-
-.task-dialog-details-wrapper {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  grid-template-rows: auto auto;
+.task-dialog-priority-input {
+  width: 40%;
 }
 
-.task-dialog-details-status {
-  /*grid-column: 1 / 2;*/
+.task-dialog-estimation-input {
+  width: 50%;
 }
 
-.task-dialog-details-user {
-  /*grid-column: 2 / 4;*/
+.task-dialog-status-select {
+  width: 80%;
 }
 
-.task-dialog-details-status-select {
-}
-
-.task-dialog-details-estimation {
-}
-
-.task-dialog-details-priority {
+.task-dialog-user-select {
+  width: 60%;
 }
 
 .task-dialog-title-input {
-  width: 98%;
+  width: 100%;
 }
 
 .task-dialog-description-textarea {
-  width: 98%;
+  width: 100%;
 }
 
 .task-dialog-buttons-wrapper {
-  /*display: grid;*/
-  /*grid-template-rows: 1fr;*/
-  /*grid-template-columns: 1fr 1fr;*/
-  /*grid-gap: 5%;*/
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 1fr;
+  grid-gap: 5%;
+}
+
+.task-dialog-button-cancel {
+}
+.task-dialog-button-save {
 }
