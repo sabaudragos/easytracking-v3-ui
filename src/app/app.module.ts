@@ -21,7 +21,7 @@ import {
   MatSidenavModule,
   MatSortModule,
   MatStepperModule,
-  MatTableModule
+  MatTableModule, MatToolbarModule
 } from "@angular/material";
 import {LoginComponent} from './login/login.component';
 import {SprintComponent} from './sprint/sprint.component';
@@ -52,7 +52,7 @@ const appRoutes: Routes = [
   {path: 'sprint/admin', component: SprintAdminComponent, canActivate: [AuthGuard]},
   {path: 'task/sprint/:id', component: SprintComponent, canActivate: [AuthGuard]},
   {path: 'user/admin', component: UserAdminComponent, canActivate: [AuthGuard]},
-  {path: 'user/:id', component: UserComponent, canActivate: [AuthGuard]},
+  {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'main-menu', component: HeaderComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
 ];
@@ -83,6 +83,7 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     MatMenuModule,
     MatCardModule,
+    MatToolbarModule,
     MatTableModule,
     MatStepperModule,
     MatPaginatorModule,

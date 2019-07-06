@@ -30,6 +30,12 @@ export class BasicAuthInterceptor implements HttpInterceptor {
       req = req.clone({
         setHeaders: headers
       });
+    } else if (req.url.endsWith("authenticate")) {
+      // check if it's an authentication request
+      headers['Authorization'] =  "Basic " + btoa(req.body.email + ":" + req.body.password);
+      req = req.clone({
+        setHeaders: headers
+      });
     }
     return req;
   }

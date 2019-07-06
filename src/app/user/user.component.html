@@ -1,1 +1,29 @@
-<p>user works!</p>
+<div class="user-profile-wrapper">
+  <mat-card class="user-profile-card">
+    <mat-card-header>
+      <div class="logo">Profile data</div>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <mat-form-field class="form-input">
+          <input matInput placeholder="First name" type="text" [name]="user.firstName" [(ngModel)]="user.firstName">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="form-input">
+          <input matInput placeholder="Second name" type="text" [name]="user.secondName" [(ngModel)]="user.secondName">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="form-input">
+          <input matInput placeholder="Email" type="email" [name]="user.email" [(ngModel)]="user.email">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="form-input">
+          <input matInput placeholder="Password" type="text" [name]="user.password" [(ngModel)]="user.password">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" (click)="onSave()">Save</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,20 +1,32 @@
-<div class="header-wrapper">
-  <mat-icon class="menu-icon"
-            color="link"
-            (click)="openSideNav()">
-    menu
-  </mat-icon>
+<mat-toolbar class="header-wrapper">
+  <div class="menu-left" (click)="onLogoClick()">
+    EasytrackingV3
+    <!--  <mat-icon class="menu-icon"-->
+    <!--            color="link"-->
+    <!--            (click)="openSideNav()">-->
+    <!--    menu-->
+    <!--  </mat-icon>-->
+  </div>
   <span class="menu-right">
     <mat-icon class="menu-icon"
               color="link"
-              (click)="openSideNav()">
+              [matMenuTriggerFor]="menuUser">
       person
     </mat-icon>
+    <mat-menu #menuUser="matMenu">
+      <button mat-menu-item mat-line (click)="onProfileClick()">Profile</button>
+      <button mat-menu-item mat-line (click)="logout()">Logout</button>
+    </mat-menu>
+
     <mat-icon class="menu-icon"
               color="link"
-              (click)="openSideNav()">
+              [matMenuTriggerFor]="menuAdmin" *ngIf="isAdmin()">
       settings
     </mat-icon>
+    <mat-menu #menuAdmin="matMenu">
+      <button mat-menu-item mat-line (click)="onSprintAdminClick()">Sprint admin</button>
+      <button mat-menu-item mat-line (click)="onUserAdminClick()">User admin</button>
+    </mat-menu>
   </span>
-</div>
+</mat-toolbar>
 <div toastContainer></div>

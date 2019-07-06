@@ -50,6 +50,8 @@ export class AuthService {
   logOut() {
     this.changeIsAuthenticated.emit(false);
     this.localStorage.remove('Authorization');
+    this.localStorage.remove('user_email');
+    this.localStorage.remove('user_id');
     this.router.navigate(['/login']);
   }
 }

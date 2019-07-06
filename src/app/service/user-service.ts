@@ -26,6 +26,11 @@ export class UserService {
     return this.httpClient.get<User[]>(AppConstants.USER_URL + '/all', {headers: authHeader});
   }
 
+  getUser(userId: number): Observable<User> {
+    let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.get<User>(AppConstants.USER_URL + '/' + userId, {headers: authHeader});
+  }
+
   update(user: User): Observable<User> {
     let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
     return this.httpClient.put<User>(AppConstants.USER_URL, user, {headers: authHeader});

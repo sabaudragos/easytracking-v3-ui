@@ -1,0 +1,12 @@
+.user-profile-wrapper{
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.user-profile-card{
+  justify-self: center;
+  width: max-content;
+}
