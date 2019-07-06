@@ -8,12 +8,24 @@
 }
 
 .menu-left {
-  cursor: pointer;
+  justify-self: start;
 }
+
 .menu-right {
   justify-self: end;
 }
 
+.menu-right-wrapper {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  grid-column-gap: 20px;
+}
+
 .menu-icon {
+  cursor: pointer;
+}
+
+.menu-logo {
   cursor: pointer;
 }

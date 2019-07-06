@@ -1,14 +1,16 @@
 <div class="sprint-wrapper">
   <div class="box a">
-    <h3>Tasks for Sprint {{currentSprint.sprintNumber}}</h3>
+    <div class="title">
+      Tasks for Sprint {{currentSprint.sprintNumber}}
+    </div>
     <div class="menu-two-wrapper">
       <div>
         <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Change sprint</button>
-        <mat-menu #menu="matMenu" >
+        <mat-menu #menu="matMenu">
           <mat-list-item class="sprint-list-item" *ngFor="let sprint of sprintList"
                          (click)="fetchTasksForSprint(sprint.id)">
             <button mat-menu-item mat-line>Sprint {{sprint.sprintNumber}}
-            <span>...:: {{sprint.startDate | date: 'dd MMM'}} - {{sprint.endDate | date: 'dd MMM'}}</span>
+              <span>...:: {{sprint.startDate | date: 'dd MMM'}} - {{sprint.endDate | date: 'dd MMM'}}</span>
             </button>
           </mat-list-item>
         </mat-menu>
@@ -17,9 +19,9 @@
         <button mat-raised-button color="primary" (click)="addNewTask()">Add task</button>
       </div>
       <div>
-<!--        <mat-form-field>-->
-<!--          <input class="menu-two-table-filter" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
-<!--        </mat-form-field>-->
+        <!--        <mat-form-field>-->
+        <!--          <input class="menu-two-table-filter" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
+        <!--        </mat-form-field>-->
       </div>
     </div>
 
