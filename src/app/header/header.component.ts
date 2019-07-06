@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
+import {SideNavService} from "../service/side-nav-service";
 
 @Component({
   selector: 'app-header',
@@ -7,10 +8,18 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  mode = new FormControl('over');
-  constructor() { }
+  isSideNavOn = false;
+
+  constructor(private sideNavService: SideNavService) {
+    sideNavService.sideNavOn.subscribe(isSideNavOn => this.isSideNavOn = isSideNavOn);
+  }
 
   ngOnInit() {
+  }
+
+  openSideNav() {
+    this.isSideNavOn = !this.isSideNavOn;
+    this.sideNavService.announceSideNavOn(this.isSideNavOn);
   }
 
 }

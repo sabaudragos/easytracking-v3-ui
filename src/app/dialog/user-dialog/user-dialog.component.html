@@ -1,0 +1,26 @@
+<div class="user-dialog-wrapper" [formGroup]="data.formControlGroup">
+  <mat-form-field>
+    <input matInput
+           placeholder="First name"
+           formControlName='firstName'>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+           placeholder="Second name"
+           formControlName='secondName'>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+           placeholder="Email"
+           formControlName='email'>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+           placeholder="Password"
+           formControlName='password'>
+  </mat-form-field>
+  <div class="user-dialog-buttons-wrapper">
+    <button mat-raised-button (click)='onNoClick()' class="task-dialog-button-cancel">Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]='data' class="task-dialog-button-save">Save</button>
+  </div>
+</div>

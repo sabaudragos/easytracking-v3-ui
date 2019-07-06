@@ -1,13 +1,20 @@
-<mat-sidenav-container class="example-container" >
-  <mat-sidenav #sidenav [mode]="'over'">
-<!--    <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>-->
-    <p>
-      loooool
-    </p>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div class="header-wrapper">
+  <mat-icon class="menu-icon"
+            color="link"
+            (click)="openSideNav()">
+    menu
+  </mat-icon>
+  <span class="menu-right">
+    <mat-icon class="menu-icon"
+              color="link"
+              (click)="openSideNav()">
+      person
+    </mat-icon>
+    <mat-icon class="menu-icon"
+              color="link"
+              (click)="openSideNav()">
+      settings
+    </mat-icon>
+  </span>
+</div>
 <div toastContainer></div>

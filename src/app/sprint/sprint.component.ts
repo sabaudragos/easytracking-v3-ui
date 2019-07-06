@@ -80,6 +80,8 @@ export class SprintComponent implements OnInit {
       (response) => {
         if (response) {
           this.dataSource = new MatTableDataSource(response);
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
           this.currentSprint = this.sprintList.find(sprint => sprint.id === sprintId);
         }
       },
@@ -169,7 +171,7 @@ export class SprintComponent implements OnInit {
       });
   }
 
-  openTask(task: Task) {
+  editTask(task: Task) {
     let boardItemForm: FormGroup = this.formBuilder.group({
       'id': new FormControl(task.id),
       'title': new FormControl(task.title, Validators.required),
@@ -207,7 +209,6 @@ export class SprintComponent implements OnInit {
 
           this.taskService.update(task).subscribe(
             (response: Task) => {
-              // update datashource?
               this.dataSource._updateChangeSubscription();
               this.toastr.success("Task was updated");
             },

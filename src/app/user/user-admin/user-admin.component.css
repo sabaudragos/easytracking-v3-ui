@@ -1,0 +1,40 @@
+.sprint-wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: auto;
+  background-color: #fff;
+  color: #444;
+  height: 100%;
+}
+
+.box {
+  background-color: #fff;
+  color: #444;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+}
+
+
+.table-cell:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/*------------- second menu wrapper--*/
+.menu-two-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 130px));
+  grid-gap: 5px;
+  margin-bottom: 10px;
+}
+
+.menu-two-table-filter {
+  height: 5px;
+}
+
+/*----------------------------------------*/
+
+table {
+  width: 100%;
+}

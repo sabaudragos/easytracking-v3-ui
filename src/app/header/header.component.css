@@ -1,3 +1,16 @@
 .header-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+}
 
+.menu-left {
+  cursor: pointer;
+}
+.menu-right {
+  justify-self: end;
+}
+
+.menu-icon {
+  cursor: pointer;
 }

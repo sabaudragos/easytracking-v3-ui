@@ -1,12 +1,10 @@
-<!--<div class="main-wrapper">-->
-  <app-header *ngIf="authService.isAuthenticated()"></app-header>
-<!--  <mat-drawer-container>-->
-<!--    <mat-drawer #drawer [mode]="'over'">-->
-<!--      I'm a drawer-->
-<!--    </mat-drawer>-->
-<!--    <mat-drawer-content>-->
-<!--      <button mat-raised-button color="primary" (click)="drawer.toggle()">Sprints</button>-->
-      <router-outlet></router-outlet>
-<!--    </mat-drawer-content>-->
-<!--  </mat-drawer-container>-->
-<!--</div>-->
+<app-header *ngIf="authService.isAuthenticated()"></app-header>
+<mat-drawer-container class="drawer-wrapper">
+  <mat-drawer #drawer [mode]="'over'">
+    I'm a drawer
+    Menu and such
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

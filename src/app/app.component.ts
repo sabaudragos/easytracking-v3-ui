@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {AuthService} from "./service/auth-service";
+import {SideNavService} from "./service/side-nav-service";
+import {MatSidenav} from "@angular/material";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,17 @@ import {AuthService} from "./service/auth-service";
 })
 export class AppComponent {
   title = 'easytracking-v3-ui';
+  @ViewChild('drawer', {static: true}) drawer: MatSidenav;
 
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService,
+              private sideNavService: SideNavService) {
+
+  }
+
+  ngAfterViewInit() {
+    this.sideNavService.sideNavOn.subscribe(isOn => {
+      console.log("Inside subscribe: " + isOn);
+      this.drawer.toggle();
+    })
   }
 }

@@ -10,7 +10,8 @@ export class SprintDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<SprintDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog) {
+  }
 
   ngOnInit() {
   }

@@ -37,9 +37,9 @@ export class SprintService {
   //   return this.httpClient.patch<Sprint>(AppConstants.SPRINT_URL_UPDATE_PASSWORD, sprint, {headers: authHeader});
   // }
 
-  delete(sprint: Sprint): Observable<Sprint> {
+  delete(sprintId: number) {
     let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.httpClient.delete<Sprint>(AppConstants.SPRINT_URL + '/' + sprint.id, {headers: authHeader});
+    return this.httpClient.delete(AppConstants.SPRINT_URL + '/' + sprintId, {headers: authHeader});
   }
 
 }

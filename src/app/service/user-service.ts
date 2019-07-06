@@ -36,9 +36,9 @@ export class UserService {
   //   return this.httpClient.patch<User>(AppConstants.USER_URL_UPDATE_PASSWORD, user, {headers: authHeader});
   // }
 
-  delete(user: User): Observable<User> {
+  delete(userId: number) {
     let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.httpClient.delete<User>(AppConstants.USER_URL + '/' + user.id, {headers: authHeader});
+    return this.httpClient.delete<User>(AppConstants.USER_URL + '/' + userId, {headers: authHeader});
   }
 
   checkIfUsernameExists(username: string): Observable<boolean> {

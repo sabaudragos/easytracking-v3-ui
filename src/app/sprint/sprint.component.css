@@ -1,7 +1,7 @@
 .sprint-wrapper {
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: minmax(200px, 1fr) 200px;
+  grid-template-columns: auto;
   background-color: #fff;
   color: #444;
   height: 100%;
@@ -16,8 +16,22 @@
 }
 
 .add-task-button {
-  margin-bottom: 5px;
+  margin-right: 25px;
 }
+
+/*------------- second menu wrapper--*/
+.menu-two-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 130px));
+  grid-gap: 5px;
+  margin-bottom: 10px;
+}
+
+.menu-two-table-filter {
+  height: 5px;
+}
+
+/*----------------------------------------*/
 
 .sprint {
   border-left: 1px solid;
@@ -30,6 +44,32 @@
   font-size: 50%;
 }
 
+.add-sprint {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  justify-content: center;
+  align-content: center;
+}
+.add-sprint-plus {
+}
+.add-sprint-new {
+  font-size: 100%;
+}
+
+.sprint-list-item {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-top-style: solid;
+  border-color: #444444;
+}
+
+.sprint-list-item:hover {
+  background-color: yellow;
+}
+
 .table-cell:hover {
   cursor: pointer;
   text-decoration: underline;
@@ -39,8 +79,3 @@ table {
   width: 100%;
 }
 
-.table-filter {
-  justify-self: end;
-  /*width: 100%;*/
-  /*height: 5px;*/
-}

@@ -6,10 +6,22 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
   MatButtonModule,
   MatCardModule,
-  MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatGridListModule, MatIconModule,
-  MatInputModule, MatListModule, MatNativeDateModule,
-  MatPaginatorModule, MatRadioModule, MatSelectModule, MatSidenavModule, MatSortModule,
-  MatStepperModule, MatTableModule
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule
 } from "@angular/material";
 import {LoginComponent} from './login/login.component';
 import {SprintComponent} from './sprint/sprint.component';
@@ -26,14 +38,22 @@ import {HeaderComponent} from './header/header.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SprintService} from "./service/sprint-service";
 import {TaskService} from "./service/task-service";
-import { SprintDialogComponent } from './dialog/sprint-dialog/sprint-dialog.component';
-import { TaskDialogComponent } from './dialog/task-dialog/task-dialog.component';
-import { RemoveDialogComponent } from './dialog/remove-dialog/remove-dialog.component';
+import {SprintDialogComponent} from './dialog/sprint-dialog/sprint-dialog.component';
+import {TaskDialogComponent} from './dialog/task-dialog/task-dialog.component';
+import {RemoveDialogComponent} from './dialog/remove-dialog/remove-dialog.component';
+import {SideNavService} from "./service/side-nav-service";
+import {SprintAdminComponent} from './sprint/sprint-admin/sprint-admin.component';
+import { UserAdminComponent } from './user/user-admin/user-admin.component';
+import { UserComponent } from './user/user.component';
+import { UserDialogComponent } from './dialog/user-dialog/user-dialog.component';
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/sprint/current', pathMatch: 'full', canActivate: [AuthGuard]},
+  {path: '', redirectTo: 'task/sprint/current', pathMatch: 'full', canActivate: [AuthGuard]},
+  {path: 'sprint/admin', component: SprintAdminComponent, canActivate: [AuthGuard]},
+  {path: 'task/sprint/:id', component: SprintComponent, canActivate: [AuthGuard]},
+  {path: 'user/admin', component: UserAdminComponent, canActivate: [AuthGuard]},
+  {path: 'user/:id', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'main-menu', component: HeaderComponent, canActivate: [AuthGuard]},
-  {path: 'sprint/:id', component: SprintComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
 ];
 
@@ -45,7 +65,11 @@ const appRoutes: Routes = [
     HeaderComponent,
     SprintDialogComponent,
     TaskDialogComponent,
-    RemoveDialogComponent
+    RemoveDialogComponent,
+    SprintAdminComponent,
+    UserAdminComponent,
+    UserComponent,
+    UserDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +81,7 @@ const appRoutes: Routes = [
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatMenuModule,
     MatCardModule,
     MatTableModule,
     MatStepperModule,
@@ -82,6 +107,7 @@ const appRoutes: Routes = [
     UserService,
     SprintService,
     TaskService,
+    SideNavService,
     LocalStorageService,
     ToastrModule,
     {provide: LOCAL_STORAGE_SERVICE, useExisting: LOCAL_STORAGE},

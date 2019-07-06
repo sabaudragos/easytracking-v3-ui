@@ -1,0 +1,18 @@
+.user-dialog-wrapper {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto auto auto;
+  grid-gap: 1%;
+}
+
+.user-dialog-buttons-wrapper {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 1fr;
+  grid-gap: 5%;
+}
+
+.task-dialog-button-cancel {
+}
+.task-dialog-button-save {
+}
