@@ -28,6 +28,7 @@ export class AuthService {
           this.localStorage.set('Authorization', "Basic " + btoa(email + ":" + password));
           this.localStorage.set('user_email', result.email);
           this.localStorage.set('user_id', result.id);
+          this.localStorage.set('roles', JSON.stringify(result.roleList));
           this.router.navigate(['']);
         }
       },
@@ -52,6 +53,7 @@ export class AuthService {
     this.localStorage.remove('Authorization');
     this.localStorage.remove('user_email');
     this.localStorage.remove('user_id');
+    this.localStorage.remove('roles');
     this.router.navigate(['/login']);
   }
 }

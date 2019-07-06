@@ -48,6 +48,6 @@ export class HeaderComponent implements OnInit {
   }
 
   isAdmin(): boolean {
-    return this.localStorage.get('user_id') === 1;
+    return (<string>this.localStorage.get('roles')).includes('admin');
   }
 }
