@@ -8,7 +8,6 @@ import {TaskService} from "../service/task-service";
 import {ActivatedRoute} from "@angular/router";
 import {Util} from "../util/util";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {SprintDialogComponent} from "../dialog/sprint-dialog/sprint-dialog.component";
 import {ToastrService} from "ngx-toastr";
 import {BoardItemStatusEnum} from "../util/board-item-status-enum";
 import {User} from "../model/user";
@@ -87,41 +86,6 @@ export class SprintComponent implements OnInit {
       },
       (error) => console.log("Something went wrong while fetching tasks for sprint" + error)
     );
-  }
-
-  addNewSprint() {
-    // show predefined data
-    let sprintFormControlGroup: FormGroup = this.formBuilder.group({
-      'sprintNumber': new FormControl(""),
-      'startDate': new FormControl(""),
-      'endDate': new FormControl(""),
-    });
-
-    const dialogRef = this.dialog.open(SprintDialogComponent, {
-      data: {
-        sprintFormControlGroup,
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog closed');
-      if (result != null) {
-        let sprint: Sprint = Sprint.getBlankSprint();
-        sprint.sprintNumber = result.sprintFormControlGroup.controls['sprintNumber'].value;
-        sprint.startDate = result.sprintFormControlGroup.controls['startDate'].value;
-        sprint.endDate = result.sprintFormControlGroup.controls['endDate'].value;
-
-        this.sprintService.create(sprint).subscribe(
-          (response) => {
-            this.sprintList.push(response);
-            this.toastr.success("Sprint " + sprint.sprintNumber + ' was created', 'Sprint add')
-          },
-          (error) => {
-            this.toastr.error("Sprint " + sprint.sprintNumber + ' was not created', 'Sprint creation failed');
-            console.log(error);
-          });
-      }
-    });
   }
 
   addNewTask() {

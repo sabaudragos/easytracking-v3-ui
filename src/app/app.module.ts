@@ -48,9 +48,9 @@ import { UserComponent } from './user/user.component';
 import { UserDialogComponent } from './dialog/user-dialog/user-dialog.component';
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: 'task/sprint/current', pathMatch: 'full', canActivate: [AuthGuard]},
+  {path: '', redirectTo: 'tasks/sprint/current', pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'sprint/admin', component: SprintAdminComponent, canActivate: [AuthGuard]},
-  {path: 'task/sprint/:id', component: SprintComponent, canActivate: [AuthGuard]},
+  {path: 'tasks/sprint/:id', component: SprintComponent, canActivate: [AuthGuard]},
   {path: 'user/admin', component: UserAdminComponent, canActivate: [AuthGuard]},
   {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'main-menu', component: HeaderComponent, canActivate: [AuthGuard]},
