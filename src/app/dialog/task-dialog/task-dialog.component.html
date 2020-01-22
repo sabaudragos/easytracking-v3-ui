@@ -1,62 +1,62 @@
 <div class="task-dialog-wrapper" [formGroup]="data.boardItemForm">
-  <div class="task-dialog-title">
-    <mat-form-field class='task-dialog-title-input'>
-      <input matInput
-             placeholder="Task title"
-             formControlName='title'>
-    </mat-form-field>
-  </div>
-  <div class="task-dialog-description">
-    <mat-form-field class='task-dialog-description-textarea'>
-      <textarea matInput
-                cdkTextareaAutosize
-                cdkAutosizeMinRows="3"
-                cdkAutosizeMaxRows="6"
-                placeholder='Description'
-                formControlName='description'>
+  <div class="task-dialog-main-content">
+    <div class="task-dialog-title">
+      <mat-form-field class='task-dialog-title-input' appearance='outline'>
+        <mat-label>Task title</mat-label>
+        <input matInput formControlName='title'>
+      </mat-form-field>
+    </div>
+    <div class="task-dialog-description">
+      <mat-form-field class='task-dialog-description-textarea' appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="11"
+                  cdkAutosizeMaxRows="13"
+                  formControlName='description'>
       </textarea>
-    </mat-form-field>
+      </mat-form-field>
+    </div>
+    <div class="task-dialog-buttons">
+      <div class="task-dialog-buttons-wrapper">
+        <button mat-raised-button (click)='onNoClick()' class="task-dialog-button-cancel">Cancel</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]='data' class="task-dialog-button-save">Save
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="task-dialog-status">
-    <mat-form-field class="task-dialog-status-select">
-      <mat-select
-        placeholder='Status'
-        formControlName='status'>
-        <mat-option *ngFor='let status of data.statusList'
-                    value={{status}}>
-          {{status}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="task-dialog-user">
-    <mat-form-field class="task-dialog-user-select">
-      <mat-select placeholder='Owner ' formControlName='user'>
-        <mat-option *ngFor='let user of data.allUsers'
-                    [value]='user'>
-          {{getUserName(user)}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="task-dialog-estimation">
-    <mat-form-field class="task-dialog-estimation-input">
-      <input matInput
-             placeholder='Estimation'
-             formControlName='estimation'>
-    </mat-form-field>
-  </div>
-  <div class="task-dialog-priority">
-    <mat-form-field class="task-dialog-priority-input">
-      <input matInput
-             placeholder='Priority'
-             formControlName='priority'>
-    </mat-form-field>
-  </div>
-  <div class="task-dialog-buttons">
-    <div class="task-dialog-buttons-wrapper">
-      <button mat-raised-button (click)='onNoClick()' class="task-dialog-button-cancel">Cancel</button>
-      <button mat-raised-button color="primary" [mat-dialog-close]='data' class="task-dialog-button-save">Save</button>
+  <div class="task-dialog-side-content">
+    <div class="task-dialog-status">
+      <mat-form-field class="task-dialog-status-select" appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName='status'>
+          <mat-option *ngFor='let status of data.statusList' value={{status}}>
+            {{status}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="task-dialog-user">
+      <mat-form-field class="task-dialog-user-select" appearance="outline">
+        <mat-label>Owner</mat-label>
+        <mat-select formControlName='user'>
+          <mat-option *ngFor='let user of data.allUsers' [value]='user'>
+            {{getUserName(user)}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="task-dialog-estimation">
+      <mat-form-field class="task-dialog-estimation-input" appearance="outline">
+        <mat-label>Estimation</mat-label>
+        <input matInput formControlName='estimation'>
+      </mat-form-field>
+    </div>
+    <div class="task-dialog-priority">
+      <mat-form-field class="task-dialog-priority-input" appearance="outline">
+        <mat-label>Priority</mat-label>
+        <input matInput formControlName='priority'>
+      </mat-form-field>
     </div>
   </div>
 </div>

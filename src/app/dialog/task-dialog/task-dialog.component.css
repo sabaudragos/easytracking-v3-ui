@@ -1,6 +1,7 @@
 .task-dialog-wrapper {
+  min-width: 800px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+  grid-template-columns: 3fr 1fr;
   grid-template-rows: auto auto auto auto;
   grid-gap: 1%;
 }
@@ -34,19 +35,15 @@
 }
 
 .task-dialog-priority-input {
-  width: 40%;
 }
 
 .task-dialog-estimation-input {
-  width: 50%;
 }
 
 .task-dialog-status-select {
-  width: 80%;
 }
 
 .task-dialog-user-select {
-  width: 60%;
 }
 
 .task-dialog-title-input {
@@ -59,7 +56,7 @@
 
 .task-dialog-buttons-wrapper {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   grid-gap: 5%;
 }
