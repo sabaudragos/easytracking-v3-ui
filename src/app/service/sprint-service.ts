@@ -11,11 +11,6 @@ export class SprintService {
   constructor(private httpClient: HttpClient) {
   }
 
-  login(sprint: Sprint): Observable<Sprint> {
-    let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.httpClient.post<Sprint>(AppConstants.LOGIN_URL, sprint, {headers: authHeader});
-  }
-
   create(sprint: Sprint): Observable<Sprint> {
     let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
     return this.httpClient.post<Sprint>(AppConstants.SPRINT_URL, sprint, {headers: authHeader});
@@ -31,11 +26,6 @@ export class SprintService {
     let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
     return this.httpClient.get<Sprint[]>(AppConstants.SPRINT_URL + "/all", {headers: authHeader});
   }
-
-  // updatePassword(sprint: Sprint): Observable<Sprint> {
-  //   let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
-  //   return this.httpClient.patch<Sprint>(AppConstants.SPRINT_URL_UPDATE_PASSWORD, sprint, {headers: authHeader});
-  // }
 
   delete(sprintId: number) {
     let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
