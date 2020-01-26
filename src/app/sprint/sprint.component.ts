@@ -83,7 +83,7 @@ export class SprintComponent implements OnInit {
           this.currentSprint = this.sprintList.find(sprint => sprint.id === sprintId);
         }
       },
-      (error) => console.log("Something went wrong while fetching tasks for sprint" + error)
+      (error) => console.log("Something went wrong while fetching tasks for sprint " + error)
     );
   }
 
