@@ -21,8 +21,7 @@ import {RemoveDialogComponent} from "../dialog/remove-dialog/remove-dialog.compo
   styleUrls: ['./sprint.component.css']
 })
 export class SprintComponent implements OnInit {
-  displayedColumns: string[] =
-    ['id', 'title', 'status', 'estimation', 'priority', 'user', 'remove'];
+  displayedColumns: string[] = ['id', 'title', 'status', 'estimation', 'priority', 'user', 'remove'];
   dataSource = new MatTableDataSource<Task>([]);
   sprintList: Sprint[] = [];
   currentSprint: Sprint = Sprint.getBlankSprint();
