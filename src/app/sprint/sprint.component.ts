@@ -88,7 +88,7 @@ export class SprintComponent implements OnInit {
   }
 
   addNewTask() {
-    console.log("Testing the build - 8");
+    console.log("Testing the build - 9");
     let boardItemForm: FormGroup = this.formBuilder.group({
       'id': new FormControl(null),
       'title': new FormControl("", Validators.required),
