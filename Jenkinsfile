@@ -37,6 +37,7 @@ pipeline {
                 cp -R easytracking-v3-ui/dist/easytracking-v3-ui /home/dragos/apps/easytracking/frontend-new
                 echo "Rename the current version to old"
                 cd /home/dragos/apps/easytracking
+                if [ -d frontend-old ]; then rm -Rf frontend-old; fi
                 mv frontend frontend-old
                 echo "Rename the new version to current"
                 mv frontend-new frontend
