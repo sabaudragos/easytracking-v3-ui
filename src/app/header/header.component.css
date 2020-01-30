@@ -3,29 +3,44 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   background-color: #fff;
-  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.3);
   margin-bottom: 10px;
 }
 
-.menu-left {
+.header-left {
   justify-self: start;
 }
 
-.menu-right {
+.header-right {
   justify-self: end;
 }
 
-.menu-right-wrapper {
+.header-left-wrapper {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 5px;
+}
+
+.header-left-menu-icon {
+  cursor: pointer;
+}
+
+.header-left-logo {
+  cursor: pointer;
+}
+
+.header-right-wrapper {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
   grid-template-rows: auto;
   grid-column-gap: 20px;
 }
 
-.menu-icon {
+.header-icon {
   cursor: pointer;
 }
 
-.menu-logo {
+.header-logo {
   cursor: pointer;
 }

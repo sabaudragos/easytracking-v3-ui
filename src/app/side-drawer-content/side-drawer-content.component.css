@@ -1,0 +1,48 @@
+.side-drawer-wrapper {
+  display: grid;
+  width: 250px;
+}
+
+.drawer-rent-item-wrapper {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-column-gap: 1%;
+  grid-row-gap: 5%;
+}
+
+.drawer-buy {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-column-gap: 1%;
+  grid-row-gap: 5%;
+}
+.drawer-divider {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.logo {
+  font-style: normal;
+  font-variant-ligatures: normal;
+  font-variant-caps: normal;
+  font-variant-numeric: normal;
+  font-variant-east-asian: normal;
+  font-weight: 500;
+  font-stretch: normal;
+  font-size: 20px;
+  line-height: 32px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  cursor: pointer;
+}
+
+.property-content {
+
+}
+
+.side-nav-item {
+  margin-left: 10px;
+}
+
+.user-content {
+
+}

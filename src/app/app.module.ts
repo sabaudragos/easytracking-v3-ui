@@ -46,6 +46,7 @@ import {SprintAdminComponent} from './sprint/sprint-admin/sprint-admin.component
 import { UserAdminComponent } from './user/user-admin/user-admin.component';
 import { UserComponent } from './user/user.component';
 import { UserDialogComponent } from './dialog/user-dialog/user-dialog.component';
+import { SideDrawerContentComponent } from './side-drawer-content/side-drawer-content.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'tasks/sprint/current', pathMatch: 'full', canActivate: [AuthGuard]},
@@ -69,7 +70,8 @@ const appRoutes: Routes = [
     SprintAdminComponent,
     UserAdminComponent,
     UserComponent,
-    UserDialogComponent
+    UserDialogComponent,
+    SideDrawerContentComponent
   ],
   imports: [
     BrowserModule,

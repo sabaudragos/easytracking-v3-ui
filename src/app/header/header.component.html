@@ -1,16 +1,16 @@
 <mat-toolbar class="header-wrapper">
   <div class="menu-left">
-    <div class="menu-logo" (click)="onLogoClick()">Easytracking v3</div>
-    <!--  <mat-icon class="menu-icon"-->
-    <!--            color="link"-->
-    <!--            (click)="openSideNav()">-->
-    <!--    menu-->
-    <!--  </mat-icon>-->
+    <div class="header-left-wrapper">
+      <div class="header-left-menu-icon">
+        <i class="fas fa-bars header-icon" (click)="openSideNav()"></i>
+      </div>
+      <div class="header-left-logo" (click)="onLogoClick()">Easytracking</div>
+    </div>
   </div>
-  <div class="menu-right">
-    <div class="menu-right-wrapper">
+  <div class="header-right">
+    <div class="header-right-wrapper">
       <div>
-        <i class="fas fa-user-circle menu-icon" [matMenuTriggerFor]="menuUser"></i>
+        <i class="fas fa-user-circle header-icon" [matMenuTriggerFor]="menuUser"></i>
         <mat-menu #menuUser="matMenu">
           <button mat-menu-item mat-line (click)="onProfileClick()">Profile</button>
           <button mat-menu-item mat-line (click)="logout()">Logout</button>

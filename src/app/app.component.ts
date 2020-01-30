@@ -1,26 +1,26 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "./service/auth-service";
 import {SideNavService} from "./service/side-nav-service";
-import {MatSidenav} from "@angular/material";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'easytracking-v3-ui';
-  @ViewChild('drawer', {static: true}) drawer: MatSidenav;
+export class AppComponent implements OnInit, OnDestroy {
+
+  @ViewChild('drawer', {static: false}) drawer;
+  sideNav;
 
   constructor(public authService: AuthService,
               private sideNavService: SideNavService) {
-
+    this.sideNav = sideNavService.sideNavOn.subscribe(() => this.drawer.open());
   }
 
-  ngAfterViewInit() {
-    this.sideNavService.sideNavOn.subscribe(isOn => {
-      console.log("Inside subscribe: " + isOn);
-      this.drawer.toggle();
-    })
+  ngOnInit(): void {
+  }
+
+  ngOnDestroy() {
+    this.sideNav.unsubscribe();
   }
 }

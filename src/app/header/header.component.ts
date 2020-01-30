@@ -16,15 +16,13 @@ export class HeaderComponent implements OnInit {
               private authService: AuthService,
               private localStorage: LocalStorageService,
               private router: Router) {
-    sideNavService.sideNavOn.subscribe(isSideNavOn => this.isSideNavOn = isSideNavOn);
   }
 
   ngOnInit() {
   }
 
   openSideNav() {
-    this.isSideNavOn = !this.isSideNavOn;
-    this.sideNavService.announceSideNavOn(this.isSideNavOn);
+    this.sideNavService.announceSideNavOn();
   }
 
   logout() {
@@ -48,6 +46,6 @@ export class HeaderComponent implements OnInit {
   }
 
   isAdmin(): boolean {
-    return (<string>this.localStorage.get('roles')).includes('admin');
+    return this.authService.isAuthenticated() && (<string>this.localStorage.get('roles')).includes('admin');
   }
 }

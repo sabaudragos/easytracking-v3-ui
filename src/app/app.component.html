@@ -1,2 +1,15 @@
-<app-header *ngIf="authService.isAuthenticated()"></app-header>
-<router-outlet></router-outlet>
+<div class="main-wrapper">
+  <mat-drawer-container class="drawer-wrapper">
+    <mat-drawer #drawer [mode]="'over'" *ngIf="authService.isAuthenticated()">
+      <app-side-drawer-content></app-side-drawer-content>
+    </mat-drawer>
+    <mat-drawer-content class="main-drawer-content-wrapper">
+      <div class="main-drawer-content-header" *ngIf="authService.isAuthenticated()">
+        <app-header></app-header>
+      </div>
+      <div class="main-drawer-content-content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

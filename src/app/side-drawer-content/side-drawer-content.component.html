@@ -1,0 +1,19 @@
+<div class="side-drawer-wrapper">
+  <div class="logo side-nav-item" [routerLink]="'/'">Easytracking</div>
+  <div class="property-content">
+    <mat-divider class="drawer-divider"></mat-divider>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'/apartment'" [queryParams]="{ action: 'rent'}"><i class="fas fa-building"></i><span class="side-nav-item">Sprint</span></a>
+      <a mat-list-item [routerLink]="'/house'" [queryParams]="{ action: 'rent'}"><i class="fas fa-home"></i><span class="side-nav-item"> Backlog</span></a>
+      <a mat-list-item [routerLink]="'/create-account'"><i class="fas fa-briefcase"></i><span class="side-nav-item"> Rent commercial property</span> </a>
+      <mat-divider class="drawer-divider"></mat-divider>
+      <a mat-list-item [routerLink]="'/apartment'" [queryParams]="{ action: 'sell'}"><i class="fas fa-building"></i><span class="side-nav-item">Project Management</span></a>
+      <a mat-list-item [routerLink]="'/house'" [queryParams]="{ action: 'sell'}"><i class="fas fa-home"></i><span class="side-nav-item">Switch Project</span></a>
+      <a mat-list-item [routerLink]="'/create-account'"><i class="fas fa-briefcase"></i><span class="side-nav-item">User Management</span></a>
+      <mat-divider class="drawer-divider"></mat-divider>
+      <a mat-list-item (click)="onLoginClick()" *ngIf="!isAuthenticated()"><i class="fas fa-sign-in-alt"></i><span class="side-nav-item">Login</span> </a>
+      <a mat-list-item (click)="onRegisterClick()" *ngIf="isAuthenticated()"><i class="fas fa-user"></i><span class="side-nav-item">Profile</span></a>
+      <a mat-list-item (click)="onLogoutClick()" *ngIf="isAuthenticated()"><i class="fas fa-sign-out-alt"></i><span class="side-nav-item">Logout</span> </a>
+    </mat-nav-list>
+  </div>
+</div>
