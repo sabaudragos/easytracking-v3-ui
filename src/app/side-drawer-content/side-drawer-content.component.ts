@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {AuthService} from "../service/auth-service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-side-drawer-content',
@@ -10,6 +11,7 @@ import {AuthService} from "../service/auth-service";
 export class SideDrawerContentComponent implements OnInit {
 
   constructor(private authService: AuthService,
+              private router: Router,
               private toastr: ToastrService) {
   }
 
@@ -23,7 +25,8 @@ export class SideDrawerContentComponent implements OnInit {
   onLoginClick() {
   }
 
-  onRegisterClick() {
+  onProfileClick() {
+    this.router.navigateByUrl("/user")
   }
 
   isAuthenticated(): boolean {
