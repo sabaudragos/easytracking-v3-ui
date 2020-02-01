@@ -52,7 +52,7 @@ const appRoutes: Routes = [
   {path: '', redirectTo: 'tasks/sprint/current', pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'sprint/admin', component: SprintAdminComponent, canActivate: [AuthGuard]},
   {path: 'tasks/sprint/:id', component: SprintComponent, canActivate: [AuthGuard]},
-  {path: 'user/admin', component: UserAdminComponent, canActivate: [AuthGuard]},
+  {path: 'admin/users', component: UserAdminComponent, canActivate: [AuthGuard]},
   {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'main-menu', component: HeaderComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},

@@ -8,7 +8,7 @@
       <mat-divider class="drawer-divider"></mat-divider>
       <a mat-list-item [routerLink]="'/apartment'" [queryParams]="{ action: 'sell'}"><i class="fas fa-sitemap"></i><span class="side-nav-item">Project Management</span></a>
       <a mat-list-item [routerLink]="'/house'" [queryParams]="{ action: 'sell'}"><i class="fas fa-exchange-alt"></i><span class="side-nav-item">Switch Project</span></a>
-      <a mat-list-item [routerLink]="'/user/admin'"><i class="fas fa-users"></i><span class="side-nav-item">User Management</span></a>
+      <a mat-list-item [routerLink]="'/admin/users'"><i class="fas fa-users"></i><span class="side-nav-item">User Management</span></a>
       <mat-divider class="drawer-divider"></mat-divider>
       <a mat-list-item (click)="onProfileClick()" *ngIf="isAuthenticated()"><i class="fas fa-user"></i><span class="side-nav-item">Profile</span></a>
       <a mat-list-item (click)="onLogoutClick()" *ngIf="isAuthenticated()"><i class="fas fa-sign-out-alt"></i><span class="side-nav-item">Logout</span> </a>

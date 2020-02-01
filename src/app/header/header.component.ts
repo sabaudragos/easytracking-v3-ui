@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onUserAdminClick() {
-    this.router.navigateByUrl("/user/admin")
+    this.router.navigateByUrl("/admin/users")
   }
 
   onLogoClick() {
