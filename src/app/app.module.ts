@@ -21,42 +21,34 @@ import {
   MatSidenavModule,
   MatSortModule,
   MatStepperModule,
-  MatTableModule, MatToolbarModule
-} from "@angular/material";
+  MatTableModule,
+  MatToolbarModule
+} from '@angular/material';
 import {LoginComponent} from './login/login.component';
 import {SprintComponent} from './sprint/sprint.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {RouterModule, Routes} from "@angular/router";
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ToastContainerModule, ToastrModule} from 'ngx-toastr';
-import {LOCAL_STORAGE_SERVICE, LocalStorageService} from "./service/localstorage-service";
-import {LOCAL_STORAGE} from "ngx-webstorage-service";
-import {AuthGuard} from "./guard/auth-guard";
-import {UserService} from "./service/user-service";
-import {AuthService} from "./service/auth-service";
-import {BasicAuthInterceptor} from "./interceptor/basic-auth-interceptor.service";
+import {LOCAL_STORAGE_SERVICE, LocalStorageService} from './service/localstorage-service';
+import {LOCAL_STORAGE} from 'ngx-webstorage-service';
+import {AuthGuard} from './guard/auth-guard';
+import {UserService} from './service/user-service';
+import {AuthService} from './service/auth-service';
+import {BasicAuthInterceptor} from './interceptor/basic-auth-interceptor.service';
 import {HeaderComponent} from './header/header.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {SprintService} from "./service/sprint-service";
-import {TaskService} from "./service/task-service";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {SprintService} from './service/sprint-service';
+import {TaskService} from './service/task-service';
 import {SprintDialogComponent} from './dialog/sprint-dialog/sprint-dialog.component';
 import {TaskDialogComponent} from './dialog/task-dialog/task-dialog.component';
 import {RemoveDialogComponent} from './dialog/remove-dialog/remove-dialog.component';
-import {SideNavService} from "./service/side-nav-service";
+import {SideNavService} from './service/side-nav-service';
 import {SprintAdminComponent} from './sprint/sprint-admin/sprint-admin.component';
-import { UserAdminComponent } from './user/user-admin/user-admin.component';
-import { UserComponent } from './user/user.component';
-import { UserDialogComponent } from './dialog/user-dialog/user-dialog.component';
-import { SideDrawerContentComponent } from './side-drawer-content/side-drawer-content.component';
-
-const appRoutes: Routes = [
-  {path: '', redirectTo: 'tasks/sprint/current', pathMatch: 'full', canActivate: [AuthGuard]},
-  {path: 'sprint/admin', component: SprintAdminComponent, canActivate: [AuthGuard]},
-  {path: 'tasks/sprint/:id', component: SprintComponent, canActivate: [AuthGuard]},
-  {path: 'admin/users', component: UserAdminComponent, canActivate: [AuthGuard]},
-  {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
-  {path: 'main-menu', component: HeaderComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent},
-];
+import {UserAdminComponent} from './user/user-admin/user-admin.component';
+import {UserComponent} from './user/user.component';
+import {UserDialogComponent} from './dialog/user-dialog/user-dialog.component';
+import {SideDrawerContentComponent} from './side-drawer-content/side-drawer-content.component';
+import {BacklogComponent} from './backlog/backlog.component';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -71,11 +63,12 @@ const appRoutes: Routes = [
     UserAdminComponent,
     UserComponent,
     UserDialogComponent,
-    SideDrawerContentComponent
+    SideDrawerContentComponent,
+    BacklogComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
