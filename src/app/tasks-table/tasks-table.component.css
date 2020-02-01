@@ -1,0 +1,34 @@
+
+.sprint-list-item {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-top-style: solid;
+  border-color: #444444;
+}
+
+.sprint-list-item:hover {
+  background-color: yellow;
+}
+
+.table-cell:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.mat-table {
+  width: 100%;
+}
+
+.filter {
+  font-size: 12px;
+}
+
+
+.menu-two-table-filter {
+  height: 5px;
+}

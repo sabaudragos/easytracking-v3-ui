@@ -49,6 +49,8 @@ import {UserDialogComponent} from './dialog/user-dialog/user-dialog.component';
 import {SideDrawerContentComponent} from './side-drawer-content/side-drawer-content.component';
 import {BacklogComponent} from './backlog/backlog.component';
 import {AppRoutingModule} from './app-routing.module';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { TasksTableComponent } from './tasks-table/tasks-table.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import {AppRoutingModule} from './app-routing.module';
     UserComponent,
     UserDialogComponent,
     SideDrawerContentComponent,
-    BacklogComponent
+    BacklogComponent,
+    TasksTableComponent
   ],
   imports: [
     AppRoutingModule,
@@ -78,6 +81,7 @@ import {AppRoutingModule} from './app-routing.module';
     MatCheckboxModule,
     MatMenuModule,
     MatCardModule,
+    MatExpansionModule,
     MatToolbarModule,
     MatTableModule,
     MatStepperModule,

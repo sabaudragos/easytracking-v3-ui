@@ -21,7 +21,6 @@ import {RemoveDialogComponent} from "../dialog/remove-dialog/remove-dialog.compo
   styleUrls: ['./sprint.component.css']
 })
 export class SprintComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'title', 'status', 'estimation', 'priority', 'user', 'remove'];
   dataSource = new MatTableDataSource<Task>([]);
   sprintList: Sprint[] = [];
   currentSprint: Sprint = Sprint.getBlankSprint();
@@ -132,102 +131,5 @@ export class SprintComponent implements OnInit {
             (error) => console.log(error));
         }
       });
-  }
-
-  editTask(task: Task) {
-    let boardItemForm: FormGroup = this.formBuilder.group({
-      'id': new FormControl(task.id),
-      'title': new FormControl(task.title, Validators.required),
-      'description': new FormControl(task.description),
-      'status': new FormControl(task.status),
-      'priority': new FormControl(task.priority),
-      'estimation': new FormControl(task.estimation),
-      'user': new FormControl(task.user, Validators.required)
-    });
-
-    const allUsers = this.allUsers;
-    const statusList: string[] = [BoardItemStatusEnum.NEW, BoardItemStatusEnum.IN_PROGRSESS,
-      BoardItemStatusEnum.IN_REVIEW, BoardItemStatusEnum.DONE];
-    const dialogRef = this.dialog.open(TaskDialogComponent, {
-      data: {
-        boardItemForm,
-        allUsers,
-        statusList
-      }
-    });
-
-    dialogRef.afterClosed()
-      .subscribe(result => {
-        if (result != null) {
-          task.title = result.boardItemForm.controls['title'].value;
-          task.description = result.boardItemForm.controls['description'].value;
-          task.status = result.boardItemForm.controls['status'].value;
-          task.priority = result.boardItemForm.controls['priority'].value;
-          task.estimation = result.boardItemForm.controls['estimation'].value;
-
-          task.user = result.boardItemForm.controls['user'].value;
-          let sprint = Sprint.getBlankSprint();
-          sprint.id = this.currentSprint.id;
-          task.sprint = sprint;
-
-          this.taskService.update(task).subscribe(
-            (response: Task) => {
-              this.dataSource._updateChangeSubscription();
-              this.toastr.success("Task was updated");
-            },
-            (error) => this.toastr.error("Task was not updated"))
-        }
-      });
-  }
-
-  getUserName(user: User): string {
-    if (Util.isNullOrUndefined(user)) {
-      return 'none';
-    } else {
-      return user.firstName;
-    }
-  }
-
-  openRemoveDialog(data: Task) {
-    const title = data.title;
-    const dialogRef = this.dialog.open(RemoveDialogComponent, {
-      width: '30%',
-      height: '20%',
-      minHeight: 170, // assumes px
-      data: {
-        title
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog closed');
-      if (result != null) {
-        this.taskService.delete(data.id).subscribe(
-          () => {
-            const index = this.dataSource.data.findIndex(task => task.id === data.id);
-            this.dataSource.data.splice(index, 1);
-            this.dataSource._updateChangeSubscription();
-            this.toastr.success("Task was removed");
-          },
-          () => this.toastr.error("Task was not removed")
-        );
-      }
-    });
-  }
-
-// (
-// (response) => {
-//   // should remove user from organization not from the app
-//   if (response == null) {
-//   this.toastr.success(name + ' was removed', 'User removed');
-// }
-// },
-// (error) => {
-//   this.toastr.error(name + ' was not removed', 'User removal failed');
-//   console.log(error);
-// })
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
