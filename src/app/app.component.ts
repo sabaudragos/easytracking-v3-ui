@@ -9,7 +9,7 @@ import {SideNavService} from "./service/side-nav-service";
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  @ViewChild('drawer', {static: false}) drawer;
+  @ViewChild('drawer') drawer;
   sideNav;
 
   constructor(public authService: AuthService,
