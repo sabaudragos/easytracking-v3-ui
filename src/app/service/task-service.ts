@@ -31,6 +31,11 @@ export class TaskService {
     return this.httpClient.get<Task[]>(AppConstants.TASK_URL + "/sprint/" + sprintId, {headers: authHeader});
   }
 
+  getAll(): Observable<Task[]> {
+    let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.get<Task[]>(AppConstants.TASK_URL + "/all", {headers: authHeader});
+  }
+
   // updatePassword(task: Task): Observable<Task> {
   //   let authHeader = new HttpHeaders({'Content-Type': 'application/json'});
   //   return this.httpClient.patch<Task>(AppConstants.TASK_URL_UPDATE_PASSWORD, task, {headers: authHeader});
