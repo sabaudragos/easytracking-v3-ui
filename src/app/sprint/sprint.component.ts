@@ -1,21 +1,15 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import { MatDialog } from "@angular/material/dialog";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSort } from "@angular/material/sort";
-import {MatTableDataSource} from "@angular/material/table";
-import {Task} from "../model/task";
-import {SprintService} from "../service/sprint-service";
-import {Sprint} from "../model/sprint";
-import {TaskService} from "../service/task-service";
-import {ActivatedRoute} from "@angular/router";
-import {Util} from "../util/util";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ToastrService} from "ngx-toastr";
-import {BoardItemStatusEnum} from "../util/board-item-status-enum";
-import {User} from "../model/user";
-import {UserService} from "../service/user-service";
-import {TaskDialogComponent} from "../dialog/task-dialog/task-dialog.component";
-import {RemoveDialogComponent} from "../dialog/remove-dialog/remove-dialog.component";
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {Task} from '../model/task';
+import {SprintService} from '../service/sprint-service';
+import {Sprint} from '../model/sprint';
+import {TaskService} from '../service/task-service';
+import {ActivatedRoute} from '@angular/router';
+import {Util} from '../util/util';
+import {FormBuilder} from '@angular/forms';
+import {ToastrService} from 'ngx-toastr';
+import {User} from '../model/user';
+import {UserService} from '../service/user-service';
 
 @Component({
   selector: 'app-sprint',
@@ -23,12 +17,10 @@ import {RemoveDialogComponent} from "../dialog/remove-dialog/remove-dialog.compo
   styleUrls: ['./sprint.component.css']
 })
 export class SprintComponent implements OnInit {
-  dataSource = new MatTableDataSource<Task>([]);
+  tasks: Task[];
   sprintList: Sprint[] = [];
   currentSprint: Sprint = Sprint.getBlankSprint();
-  allUsers: User[] = [];
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  allUsers: User[];
 
   constructor(private sprintService: SprintService,
               private taskService: TaskService,
@@ -40,6 +32,10 @@ export class SprintComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadInitialData();
+  }
+
+  private loadInitialData() {
     this.sprintService.getAllSprints().subscribe(
       (response: Sprint[]) => {
         if (response && response.length > 0) {
@@ -47,21 +43,19 @@ export class SprintComponent implements OnInit {
           let sprintId = this.route.snapshot.params['id'];
           if (!Util.isNullOrUndefined(sprintId)) {
             this.currentSprint = this.sprintList[0];
-            if (sprintId === "current") {
+            if (sprintId === 'current') {
               sprintId = this.currentSprint.id;
             }
             this.taskService.getTasksBySprintId(sprintId).subscribe(
               (response) => {
-                this.dataSource = new MatTableDataSource(response);
-                this.dataSource.sort = this.sort;
-                this.dataSource.paginator = this.paginator;
+                this.tasks = response;
               },
-              (error) => console.log("Something went wrong while fetching tasks for sprint " + sprintId)
+              (error) => console.log('Something went wrong while fetching tasks for sprint ' + sprintId)
             );
           }
         }
       },
-      (error) => console.log("Error fetching all sprints" + error)
+      (error) => console.log('Error fetching all sprints' + error)
     );
 
     this.userService.getAllUsers().subscribe(
@@ -70,7 +64,7 @@ export class SprintComponent implements OnInit {
           this.allUsers = response;
         }
       },
-      (error) => console.log("Something went wrong while fetching the users")
+      (error) => console.log('Something went wrong while fetching the users')
     );
   }
 
@@ -78,60 +72,12 @@ export class SprintComponent implements OnInit {
     this.taskService.getTasksBySprintId(sprintId).subscribe(
       (response) => {
         if (response) {
-          this.dataSource = new MatTableDataSource(response);
-          this.dataSource.sort = this.sort;
-          this.dataSource.paginator = this.paginator;
+          this.tasks = response;
           this.currentSprint = this.sprintList.find(sprint => sprint.id === sprintId);
         }
       },
-      (error) => console.log("Something went wrong while fetching tasks for sprint" + error)
+      (error) => console.log('Something went wrong while fetching tasks for sprint' + error)
     );
   }
 
-  addNewTask() {
-    let boardItemForm: FormGroup = this.formBuilder.group({
-      'id': new FormControl(null),
-      'title': new FormControl("", Validators.required),
-      'description': new FormControl(""),
-      'status': new FormControl(BoardItemStatusEnum.NEW),
-      'priority': new FormControl(2),
-      'estimation': new FormControl(2),
-      'user': new FormControl(null, Validators.required)
-    });
-
-    const allUsers = this.allUsers;
-    const statusList: string[] = [BoardItemStatusEnum.NEW, BoardItemStatusEnum.IN_PROGRSESS,
-      BoardItemStatusEnum.IN_REVIEW, BoardItemStatusEnum.DONE];
-    const dialogRef = this.dialog.open(TaskDialogComponent, {
-      data: {
-        boardItemForm,
-        allUsers,
-        statusList
-      }
-    });
-
-    dialogRef.afterClosed()
-      .subscribe(result => {
-        if (result != null) {
-          let taskToSave: Task = Task.getBlankTask();
-          taskToSave.title = result.boardItemForm.controls['title'].value;
-          taskToSave.description = result.boardItemForm.controls['description'].value;
-          taskToSave.status = result.boardItemForm.controls['status'].value;
-          taskToSave.priority = result.boardItemForm.controls['priority'].value;
-          taskToSave.estimation = result.boardItemForm.controls['estimation'].value;
-
-          taskToSave.user = result.boardItemForm.controls['user'].value;
-          let sprint = Sprint.getBlankSprint();
-          sprint.id = this.currentSprint.id;
-          taskToSave.sprint = sprint;
-
-          this.taskService.create(taskToSave).subscribe(
-            (response: Task) => {
-              this.dataSource.data.push(response);
-              this.dataSource._updateChangeSubscription();
-            },
-            (error) => console.log(error));
-        }
-      });
-  }
 }

@@ -28,7 +28,26 @@
   font-size: 12px;
 }
 
-
 .menu-two-table-filter {
   height: 5px;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 170px 230px auto;
+  grid-template-rows: 1fr;
+  align-items: baseline;
+}
+
+.table-title {
+  font-size: 20px;
+}
+
+.add-task {
+  font-size: 20px;
+}
+
+.add-task:hover {
+  cursor: pointer;
+  color: dodgerblue;
 }

@@ -1,28 +1,11 @@
 <div>
   <div class="box a">
-    <div class="title">
-      Tasks for Sprint {{currentSprint.sprintNumber}}
-    </div>
-    <div class="menu-two-wrapper">
-      <div>
-        <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Change sprint</button>
-        <mat-menu #menu="matMenu">
-          <mat-list-item class="sprint-list-item" *ngFor="let sprint of sprintList"
-                         (click)="fetchTasksForSprint(sprint.id)">
-            <button mat-menu-item mat-line>Sprint {{sprint.sprintNumber}}
-              <span>...:: {{sprint.startDate | date: 'dd MMM'}} - {{sprint.endDate | date: 'dd MMM'}}</span>
-            </button>
-          </mat-list-item>
-        </mat-menu>
-      </div>
-      <div>
-        <button mat-raised-button color="primary" (click)="addNewTask()">Add task</button>
-      </div>
-    </div>
-    <app-tasks-table
-      [dataSource]="dataSource"
-      hasFilter="true"
-      [allUsers]="allUsers">
+    <app-tasks-table *ngIf="tasks && allUsers"
+                     [tasks]="tasks"
+                     hasFilter="true"
+                     [sprint]="currentSprint"
+                     tableTitle="Sprint {{currentSprint.sprintNumber}} tasks"
+                     [allUsers]="allUsers">
     </app-tasks-table>
   </div>
 </div>

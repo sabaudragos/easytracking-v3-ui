@@ -5,7 +5,7 @@ export class Sprint {
   sprintNumber: number;
   startDate: Date;
   endDate: Date;
-  taskList: Task[];
+  tasks: Task[];
 
   public static getBlankSprint(): Sprint {
     return new Sprint();

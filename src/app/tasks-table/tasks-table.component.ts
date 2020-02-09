@@ -15,6 +15,7 @@ import {BoardItemStatusEnum} from '../util/board-item-status-enum';
 import {TaskDialogComponent} from '../dialog/task-dialog/task-dialog.component';
 import {RemoveDialogComponent} from '../dialog/remove-dialog/remove-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {Sprint} from '../model/sprint';
 
 @Component({
   selector: 'app-tasks-table',
@@ -22,8 +23,11 @@ import {MatDialog} from '@angular/material/dialog';
   styleUrls: ['./tasks-table.component.css']
 })
 export class TasksTableComponent implements OnInit {
-  @Input() dataSource: MatTableDataSource<Task>;
+  dataSource: MatTableDataSource<Task> = new MatTableDataSource<Task>([]);
   @Input() hasFilter: boolean;
+  @Input() tableTitle: string;
+  @Input() sprint: Sprint;
+  @Input() tasks: Task[];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   displayedColumns: string[] = ['id', 'title', 'status', 'estimation', 'priority', 'user', 'remove'];
@@ -39,6 +43,9 @@ export class TasksTableComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataSource = new MatTableDataSource<Task>(this.tasks);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   addNewTask() {
@@ -74,11 +81,13 @@ export class TasksTableComponent implements OnInit {
           taskToSave.estimation = result.boardItemForm.controls['estimation'].value;
 
           taskToSave.user = result.boardItemForm.controls['user'].value;
+          taskToSave.sprint = this.getSprint();
 
           this.taskService.create(taskToSave).subscribe(
             (response: Task) => {
               this.dataSource.data.push(response);
               this.dataSource._updateChangeSubscription();
+              this.toastr.success('Task was created');
             },
             (error) => console.log(error));
         }
@@ -118,6 +127,7 @@ export class TasksTableComponent implements OnInit {
           task.estimation = result.boardItemForm.controls['estimation'].value;
 
           task.user = result.boardItemForm.controls['user'].value;
+          task.sprint = this.getSprint();
 
           this.taskService.update(task).subscribe(
             (response: Task) => {
@@ -166,6 +176,17 @@ export class TasksTableComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
+  private getSprint(): Sprint {
+    if (this.sprint !== undefined && this.sprint !== null) {
+      const sprintDto = Sprint.getBlankSprint();
+      sprintDto.id = this.sprint.id;
+      return sprintDto;
+    }
+
+    return null;
   }
 
 }

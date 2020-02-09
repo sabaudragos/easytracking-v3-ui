@@ -1,7 +1,15 @@
-<div class="filter" *ngIf="hasFilter">
-  <mat-form-field appearance="outline">
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search table">
-  </mat-form-field>
+<div class="table-header">
+  <div class="table-title">
+    {{tableTitle}}
+  </div>
+  <div class="filter" *ngIf="hasFilter">
+    <mat-form-field appearance="outline">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search table">
+    </mat-form-field>
+  </div>
+  <div class="add-task" (click)="addNewTask()">
+    <i class="far fa-plus-square"></i>
+  </div>
 </div>
 <div class="table-wrapper mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
@@ -62,7 +70,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <mat-paginator [length]="dataSource.data.length"
-                 [pageSize]="20"
+                 [pageSize]="5"
                  [pageSizeOptions]="[5, 10, 20]">
   </mat-paginator>
 </div>
