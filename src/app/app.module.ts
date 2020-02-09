@@ -50,6 +50,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {TasksTableComponent} from './tasks-table/tasks-table.component';
 import {BacklogService} from './service/backlog-service';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import {BacklogService} from './service/backlog-service';
     MatListModule,
     MatGridListModule,
     MatSelectModule,
+    MatTooltipModule,
     ToastrModule.forRoot(),
     ToastContainerModule,
     MatDialogModule,
