@@ -23,15 +23,19 @@ import {Sprint} from '../model/sprint';
   styleUrls: ['./tasks-table.component.css']
 })
 export class TasksTableComponent implements OnInit {
-  dataSource: MatTableDataSource<Task> = new MatTableDataSource<Task>([]);
   @Input() hasFilter: boolean;
   @Input() tableTitle: string;
   @Input() sprint: Sprint;
   @Input() tasks: Task[];
+  @Input() allUsers: User[];
+  @Input() showTableToggle: boolean = false;
+
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
+  dataSource: MatTableDataSource<Task> = new MatTableDataSource<Task>([]);
   displayedColumns: string[] = ['id', 'title', 'status', 'estimation', 'priority', 'user', 'remove'];
-  @Input() allUsers: User[];
+  showTable: boolean = true;
 
   constructor(private sprintService: SprintService,
               private taskService: TaskService,
@@ -189,4 +193,7 @@ export class TasksTableComponent implements OnInit {
     return null;
   }
 
+  toggleShowTable() {
+    this.showTable = !this.showTable;
+  }
 }

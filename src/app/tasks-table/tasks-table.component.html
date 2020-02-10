@@ -10,8 +10,12 @@
   <div>
     <i class="far fa-plus-square add-task" matTooltip="Add new task" (click)="addNewTask()"></i>
   </div>
+  <div class="table-toggle" *ngIf="showTableToggle">
+    <span *ngIf="showTable == true" (click)="toggleShowTable()">hide table</span>
+    <span *ngIf="showTable == false" (click)="toggleShowTable()">show table</span>
+  </div>
 </div>
-<div class="table-wrapper mat-elevation-z8">
+<div class="table-wrapper mat-elevation-z8" *ngIf="showTable">
   <table mat-table [dataSource]="dataSource" matSort>
     <!-- Position Column -->
     <ng-container matColumnDef="id">

@@ -1,11 +1,11 @@
 <div>
-  <div class="box a">
-    <app-tasks-table *ngIf="tasks && allUsers"
-                     [tasks]="tasks"
-                     hasFilter="true"
-                     [sprint]="currentSprint"
-                     tableTitle="Sprint {{currentSprint.sprintNumber}} tasks"
-                     [allUsers]="allUsers">
+  <div class="box a" *ngIf="tasks && allUsers">
+    <app-tasks-table
+      [tasks]="tasks"
+      [sprint]="currentSprint"
+      [allUsers]="allUsers"
+      hasFilter="true"
+      tableTitle="Sprint {{currentSprint.sprintNumber}} tasks">
     </app-tasks-table>
   </div>
 </div>

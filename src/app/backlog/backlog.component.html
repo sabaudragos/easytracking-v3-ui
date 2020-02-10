@@ -1,24 +1,26 @@
 <div>
-  <div class="box a">
+  <div class="box a" *ngIf="backlog && allUsers">
     <div *ngFor="let sprint of backlog.sprints" class="sprints-wrapper">
       <div>
-        <app-tasks-table *ngIf="backlog && allUsers"
-                         [tasks]="sprint.tasks"
-                         [sprint]="sprint"
-                         hasFilter="true"
-                         tableTitle="Sprint {{sprint.sprintNumber}} tasks"
-                         [allUsers]="allUsers">
+        <app-tasks-table
+          [tasks]="sprint.tasks"
+          [sprint]="sprint"
+          [allUsers]="allUsers"
+          [showTableToggle]="true"
+          hasFilter="true"
+          tableTitle="Sprint {{sprint.sprintNumber}} tasks">
         </app-tasks-table>
       </div>
     </div>
 
     <div>
-      <app-tasks-table *ngIf="backlog && allUsers"
-                       [tasks]="backlog.backlogTasks"
-                       [sprint]="null"
-                       hasFilter="true"
-                       tableTitle="Backlog tasks"
-                       [allUsers]="allUsers">
+      <app-tasks-table
+        [tasks]="backlog.backlogTasks"
+        [allUsers]="allUsers"
+        [sprint]="null"
+        [showTableToggle]="true"
+        hasFilter="true"
+        tableTitle="Backlog tasks">
       </app-tasks-table>
     </div>
   </div>

@@ -34,9 +34,20 @@
 
 .table-header {
   display: grid;
-  grid-template-columns: 170px 230px auto;
+  grid-template-columns: 170px 230px 50px auto;
   grid-template-rows: 1fr;
   align-items: baseline;
+}
+
+.table-toggle {
+  font-size: 14px;
+  color: dodgerblue;
+}
+
+.table-toggle:hover {
+  cursor: pointer;
+  color: red;
+  text-decoration: underline;
 }
 
 .table-title {
